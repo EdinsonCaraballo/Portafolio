@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" target-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="loading.title" datatype="html">
+        <source>Cargando datos del portafolio...</source>
+        <target>Loading portfolio data...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="loading.subtitle" datatype="html">
+        <source>Por favor, espere un momento</source>
+        <target>Please wait a moment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="error.backend" datatype="html">
+        <source>No se pudo conectar al servidor Django backend. Asegúrese de que los contenedores estén funcionando.</source>
+        <target>Could not connect to the Django backend server. Make sure the containers are running.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="error.retry" datatype="html">
+        <source> Reintentar </source>
+        <target> Retry </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">32,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.fullstackDev" datatype="html">
+        <source>Desarrollador Full-Stack</source>
+        <target>Full-Stack Developer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.experience" datatype="html">
+        <source> Experiencia <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Experience <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">56,58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.skills" datatype="html">
+        <source> Habilidades <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Skills <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">60,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.projects" datatype="html">
+        <source> Proyectos <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Projects <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">64,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.education" datatype="html">
+        <source> Educación <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Education <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full&quot; style=&quot;height: 2px; bottom: -4px;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">68,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.theme" datatype="html">
+        <source>Tema</source>
+        <target>Theme</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.contact" datatype="html">
+        <source> Contacto </source>
+        <target> Contact </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">132,134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hero.available" datatype="html">
+        <source>Disponible para trabajar</source>
+        <target>Available for work</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hero.greeting" datatype="html">
+        <source>Hola, soy</source>
+        <target>Hi, I'm</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hero.workTogether" datatype="html">
+        <source>Hablemos</source>
+        <target>Let's talk</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">198</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hero.downloadCv" datatype="html">
+        <source>Descargar CV</source>
+        <target>Download CV</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">205</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hero.copied" datatype="html">
+        <source>¡Copiado!</source>
+        <target>Copied!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">226</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="hero.fullstackEngineer" datatype="html">
+        <source>Ingeniero Full-Stack</source>
+        <target>Full-Stack Engineer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">259</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminal.badge" datatype="html">
+        <source>Consola Interactiva</source>
+        <target>Interactive Console</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">300</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminal.title" datatype="html">
+        <source>Estación de Trabajo Linux</source>
+        <target>Linux Workstation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">301</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminal.placeholder" datatype="html">
+        <source>Escribe &apos;help&apos; para comenzar...</source>
+        <target>Type 'help' to start...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">344</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.badge" datatype="html">
+        <source>Trayectoria</source>
+        <target>Trajectory</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">368</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.title" datatype="html">
+        <source>Experiencia Profesional</source>
+        <target>Professional Experience</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">369</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.hideDetails" datatype="html">
+        <source>Ocultar detalles</source>
+        <target>Hide details</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">407</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.showDetails" datatype="html">
+        <source>Ver detalles</source>
+        <target>View details</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">408</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.achievements" datatype="html">
+        <source>Logros Clave</source>
+        <target>Key Achievements</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">419</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.badge" datatype="html">
+        <source>Conocimientos</source>
+        <target>Skills</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">449</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.title" datatype="html">
+        <source>Habilidades Técnicas</source>
+        <target>Technical Skills</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">450</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.searchPlaceholder" datatype="html">
+        <source>Buscar tecnología...</source>
+        <target>Search technology...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">456</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.level" datatype="html">
+        <source>Nivel</source>
+        <target>Level</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">492</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="skills.empty" datatype="html">
+        <source> No se encontraron habilidades que coincidan con la búsqueda. </source>
+        <target> No skills found matching your search. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">508,510</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.badge" datatype="html">
+        <source>Portafolio</source>
+        <target>Portfolio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">523</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.title" datatype="html">
+        <source>Proyectos Destacados</source>
+        <target>Featured Projects</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">524</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.searchPlaceholder" datatype="html">
+        <source>Buscar proyecto...</source>
+        <target>Search project...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">530</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.techFilterTitle" datatype="html">
+        <source>TECNOLOGÍAS</source>
+        <target>TECHNOLOGIES</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">565</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.clearFilters" datatype="html">
+        <source> Limpiar </source>
+        <target> Clear </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">566,568</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.noTechFound" datatype="html">
+        <source> Sin resultados </source>
+        <target> No results </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">594,596</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.activeFilters" datatype="html">
+        <source>Activos:</source>
+        <target>Active:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">605</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.clearAllFilters" datatype="html">
+        <source> [Limpiar todo] </source>
+        <target> [Clear all] </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">614,616</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.tabAll" datatype="html">
+        <source>Todos</source>
+        <target>All</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">629</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.tabFeatured" datatype="html">
+        <source>Destacados</source>
+        <target>Featured</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">637</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.tabLaboral" datatype="html">
+        <source>Laborales</source>
+        <target>Professional</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">645</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">668</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.tabUniversitario" datatype="html">
+        <source>Universitarios</source>
+        <target>Academic</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">653</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">669</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.viewDetails" datatype="html">
+        <source>Ver detalles del proyecto</source>
+        <target>View project details</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">698</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.empty" datatype="html">
+        <source> No se encontraron proyectos con los criterios de búsqueda seleccionados. </source>
+        <target> No projects found matching the selected search criteria. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">706,708</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="education.badge" datatype="html">
+        <source>Estudios</source>
+        <target>Education</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">720</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="education.title" datatype="html">
+        <source>Educación &amp; Certificaciones</source>
+        <target>Education &amp; Certifications</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">721</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="education.projectsLabel" datatype="html">
+        <source>Proyectos Destacados</source>
+        <target>Featured Projects</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">742</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.title" datatype="html">
+        <source>Ponte en contacto</source>
+        <target>Get in touch</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">756</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.subtitle" datatype="html">
+        <source>Envíame un mensaje directo o contáctame por redes sociales</source>
+        <target>Send me a direct message or contact me via social media</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">757</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.successTitle" datatype="html">
+        <source>¡Mensaje Enviado con Éxito!</source>
+        <target>Message Sent Successfully!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">774</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.successSubtitle" datatype="html">
+        <source>Gracias por escribirme. Responderé a tu correo tan pronto como sea posible.</source>
+        <target>Thank you for writing. I will reply to your email as soon as possible.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">775</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.nameLabel" datatype="html">
+        <source>Nombre Completo</source>
+        <target>Full Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">782</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.namePlaceholder" datatype="html">
+        <source>Tu nombre...</source>
+        <target>Your name...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">785</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.emailLabel" datatype="html">
+        <source>Correo Electrónico</source>
+        <target>Email Address</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">794</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.emailPlaceholder" datatype="html">
+        <source>tu@correo.com</source>
+        <target>you@email.com</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">797</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.messageLabel" datatype="html">
+        <source>Mensaje</source>
+        <target>Message</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">806</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.messagePlaceholder" datatype="html">
+        <source>¿Cómo te puedo ayudar?</source>
+        <target>How can I help you?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">809</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.sending" datatype="html">
+        <source>Enviando...</source>
+        <target>Sending...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">820</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.submit" datatype="html">
+        <source>Enviar Mensaje</source>
+        <target>Send Message</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">823</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.nav.experience" datatype="html">
+        <source>Experiencia</source>
+        <target>Experience</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">841</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.nav.skills" datatype="html">
+        <source>Habilidades</source>
+        <target>Skills</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">842</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.nav.projects" datatype="html">
+        <source>Proyectos</source>
+        <target>Projects</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">843</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.nav.education" datatype="html">
+        <source>Educación</source>
+        <target>Education</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">844</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.role" datatype="html">
+        <source>Desarrollador Full-Stack</source>
+        <target>Full-Stack Developer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">846</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.fullDescription" datatype="html">
+        <source>Descripción Detallada</source>
+        <target>Detailed Description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">872</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.techStack" datatype="html">
+        <source>Tecnologías Utilizadas</source>
+        <target>Technologies Used</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">877</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.copyCard" datatype="html">
+        <source>Copiar Información</source>
+        <target>Copy Information</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">889</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="projects.close" datatype="html">
+        <source> Cerrar </source>
+        <target> Close </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">891,893</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filters.all" datatype="html">
+        <source>Todos</source>
+        <target>All</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filters.backend" datatype="html">
+        <source>Backend</source>
+        <target>Backend</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filters.frontend" datatype="html">
+        <source>Frontend</source>
+        <target>Frontend</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filters.databases" datatype="html">
+        <source>Bases de datos</source>
+        <target>Databases</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filters.tools" datatype="html">
+        <source>Herramientas</source>
+        <target>Tools</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="filters.fullstack" datatype="html">
+        <source>Fullstack</source>
+        <target>Fullstack</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="metrics.yearsExperience" datatype="html">
+        <source>Años de experiencia</source>
+        <target>Years of experience</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="metrics.projectsCompleted" datatype="html">
+        <source>Proyectos completados</source>
+        <target>Projects completed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="metrics.databases" datatype="html">
+        <source>Bases de datos</source>
+        <target>Databases</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="metrics.happyClients" datatype="html">
+        <source>Clientes satisfechos</source>
+        <target>Happy clients</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminal.init1" datatype="html">
+        <source>╔════════════════════════════════════════════════════════════╗</source>
+        <target>╔════════════════════════════════════════════════════════════╗</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">289</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminal.init2" datatype="html">
+        <source>║     PORTFOLIO INTERACTIVE TERMINAL v3.0 - INITIALIZED      ║</source>
+        <target>║     PORTFOLIO INTERACTIVE TERMINAL v3.0 - INITIALIZED      ║</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">290</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminal.init3" datatype="html">
+        <source>╚════════════════════════════════════════════════════════════╝</source>
+        <target>╚════════════════════════════════════════════════════════════╝</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">291</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terminal.init4" datatype="html">
+        <source>Type &quot;help&quot; to see available commands</source>
+        <target>Type &quot;help&quot; to see available commands</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">292</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.fullstackDev" datatype="html">
+        <source>Desarrollador Full-Stack</source>
+        <target>Full-Stack Developer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">300</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.nameRequired" datatype="html">
+        <source>El nombre es requerido</source>
+        <target>Name is required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">568</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.emailRequired" datatype="html">
+        <source>El correo es requerido</source>
+        <target>Email is required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">572</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.emailInvalid" datatype="html">
+        <source>Formato de correo inválido</source>
+        <target>Invalid email format</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">576</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.messageRequired" datatype="html">
+        <source>El mensaje es requerido</source>
+        <target>Message is required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">580</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.sendError" datatype="html">
+        <source>Error al enviar el mensaje. Inténtelo de nuevo.</source>
+        <target>Error sending message. Please try again.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">601</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="accessibility.accessibleMode" datatype="html">
+        <source>Modo Accesible</source>
+        <target>Accessible Mode</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="accessibility.darkMode" datatype="html">
+        <source>Fondo Oscuro</source>
+        <target>Dark Mode</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="accessibility.titleToLight" datatype="html">
+        <source>Cambiar a Fondo Claro de Alta Legibilidad</source>
+        <target>Switch to High Readability Light Mode</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="accessibility.titleToDark" datatype="html">
+        <source>Cambiar a Fondo Oscuro original</source>
+        <target>Switch to original Dark Mode</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

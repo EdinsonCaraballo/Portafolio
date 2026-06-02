@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "education": "Educación",
+    "contact": "Contacto",
+    "theme": "Tema",
+    "language": "Idioma",
+    "fullstackDev": "Desarrollador Full-Stack"
+  },
+  "loading": {
+    "title": "Cargando portafolio...",
+    "subtitle": "Conectando con el servidor Django REST"
+  },
+  "error": {
+    "retry": "Reintentar",
+    "backend": "No se pudo conectar con el servidor backend de Django. Verifica que los contenedores estén corriendo."
+  },
+  "hero": {
+    "available": "Disponible para nuevos proyectos",
+    "greeting": "Hola, soy",
+    "workTogether": "Trabajemos Juntos",
+    "downloadCv": "Descargar CV",
+    "copied": "¡Copiado!",
+    "fullstackEngineer": "Ingeniero Full-Stack"
+  },
+  "metrics": {
+    "yearsExperience": "Años de experiencia",
+    "projectsCompleted": "Proyectos completados",
+    "databases": "Bases de datos",
+    "happyClients": "Clientes satisfechos"
+  },
+  "terminal": {
+    "badge": "Interactividad",
+    "title": "Consola Interactiva",
+    "placeholder": "Escribe 'help' para comenzar...",
+    "init1": "╔════════════════════════════════════════════════════════════╗",
+    "init2": "║     TERMINAL INTERACTIVO DEL PORTAFOLIO v3.0 - INICIADO    ║",
+    "init3": "╚════════════════════════════════════════════════════════════╝",
+    "init4": "Escribe \"help\" para ver los comandos disponibles"
+  },
+  "experience": {
+    "badge": "Trayectoria",
+    "title": "Experiencia Profesional",
+    "hideDetails": "Ocultar detalles",
+    "showDetails": "Ver detalles",
+    "achievements": "Logros Destacados"
+  },
+  "skills": {
+    "badge": "Tecnologías",
+    "title": "Stack Tecnológico",
+    "searchPlaceholder": "Buscar tecnología...",
+    "level": "Nivel",
+    "empty": "No se encontraron habilidades"
+  },
+  "projects": {
+    "badge": "Portafolio",
+    "title": "Proyectos Destacados",
+    "searchPlaceholder": "Buscar proyecto...",
+    "viewDetails": "Ver detalles técnicos",
+    "empty": "No se encontraron proyectos",
+    "fullDescription": "Descripción completa",
+    "techStack": "Stack tecnológico",
+    "copyCard": "Copiar ficha",
+    "close": "Cerrar",
+    "tabAll": "Todos",
+    "tabFeatured": "Destacados",
+    "tabLaboral": "Laborales",
+    "tabUniversitario": "Universitarios"
+  },
+  "education": {
+    "badge": "Formación",
+    "title": "Educación",
+    "projectsLabel": "Proyectos"
+  },
+  "contact": {
+    "title": "¿Trabajamos juntos?",
+    "subtitle": "Cuéntame sobre tu proyecto o consulta",
+    "successTitle": "¡Mensaje enviado!",
+    "successSubtitle": "Te responderé lo antes posible",
+    "nameLabel": "Nombre completo",
+    "namePlaceholder": "Tu nombre...",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@email.com",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "¿En qué puedo ayudarte?",
+    "sending": "Enviando...",
+    "submit": "Enviar mensaje",
+    "nameRequired": "El nombre es obligatorio",
+    "emailRequired": "El correo es obligatorio",
+    "emailInvalid": "Formato de correo inválido",
+    "messageRequired": "El mensaje es obligatorio",
+    "sendError": "Error al enviar el mensaje. Inténtalo de nuevo."
+  },
+  "footer": {
+    "role": "Ingeniero Full-Stack"
+  },
+  "filters": {
+    "all": "Todos",
+    "backend": "Backend",
+    "fullstack": "Fullstack",
+    "tools": "Herramientas",
+    "frontend": "Frontend",
+    "databases": "Bases de Datos"
+  }
+}

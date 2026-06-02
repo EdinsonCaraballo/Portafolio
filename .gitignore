@@ -1,0 +1,86 @@
+# ==============================================================================
+# Portafolio Web Profesional - .gitignore
+# ==============================================================================
+
+# --- Node / Angular / Frontend ---
+frontend/node_modules/
+frontend/.angular/
+frontend/dist/
+frontend/tmp/
+frontend/out-tsc/
+frontend/bazel-out/
+.npm
+.eslintcache
+
+# --- Python / Django / Backend ---
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/.Python
+backend/build/
+backend/develop-eggs/
+backend/dist/
+backend/downloads/
+backend/eggs/
+backend/.eggs/
+backend/lib/
+backend/lib64/
+backend/parts/
+backend/sdist/
+backend/var/
+backend/wheels/
+backend/share/python-wheels/
+backend/*.egg-info/
+backend/.installed.cfg
+backend/*.egg
+backend/manifest
+backend/spec
+backend/.pytest_cache/
+backend/.tox/
+backend/.coverage
+backend/htmlcov/
+backend/.venv/
+backend/venv/
+backend/ENV/
+backend/env/
+
+# --- Django Databases & Local Settings ---
+backend/db.sqlite3
+backend/db.sqlite3-journal
+backend/local_settings.py
+
+# --- Environment files & Secrets (Crucial) ---
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+*.env
+
+# --- IDEs / Editors ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+.project
+.cproject
+
+# --- OS temporary files ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- Docker ---
+.docker/
+docker-compose.override.yml

@@ -1,0 +1,107 @@
+{
+  "nav": {
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "education": "Education",
+    "contact": "Contact",
+    "theme": "Theme",
+    "language": "Language",
+    "fullstackDev": "Full-Stack Developer"
+  },
+  "loading": {
+    "title": "Loading portfolio...",
+    "subtitle": "Connecting to Django REST server"
+  },
+  "error": {
+    "retry": "Retry",
+    "backend": "Could not connect to the Django backend server. Make sure the containers are running."
+  },
+  "hero": {
+    "available": "Available for new projects",
+    "greeting": "Hi, I'm",
+    "workTogether": "Let's Work Together",
+    "downloadCv": "Download CV",
+    "copied": "Copied!",
+    "fullstackEngineer": "Full-Stack Engineer"
+  },
+  "metrics": {
+    "yearsExperience": "Years of experience",
+    "projectsCompleted": "Completed projects",
+    "databases": "Databases",
+    "happyClients": "Happy clients"
+  },
+  "terminal": {
+    "badge": "Interactivity",
+    "title": "Interactive Console",
+    "placeholder": "Type 'help' to get started...",
+    "init1": "╔════════════════════════════════════════════════════════════╗",
+    "init2": "║     PORTFOLIO INTERACTIVE TERMINAL v3.0 - INITIALIZED      ║",
+    "init3": "╚════════════════════════════════════════════════════════════╝",
+    "init4": "Type \"help\" to see available commands"
+  },
+  "experience": {
+    "badge": "Career",
+    "title": "Professional Experience",
+    "hideDetails": "Hide details",
+    "showDetails": "View details",
+    "achievements": "Key Achievements"
+  },
+  "skills": {
+    "badge": "Technologies",
+    "title": "Tech Stack",
+    "searchPlaceholder": "Search technology...",
+    "level": "Level",
+    "empty": "No skills found"
+  },
+  "projects": {
+    "badge": "Portfolio",
+    "title": "Featured Projects",
+    "searchPlaceholder": "Search project...",
+    "viewDetails": "View technical details",
+    "empty": "No projects found",
+    "fullDescription": "Full description",
+    "techStack": "Tech stack",
+    "copyCard": "Copy summary",
+    "close": "Close",
+    "tabAll": "All",
+    "tabFeatured": "Featured",
+    "tabLaboral": "Work Projects",
+    "tabUniversitario": "Academic Projects"
+  },
+  "education": {
+    "badge": "Background",
+    "title": "Education",
+    "projectsLabel": "Projects"
+  },
+  "contact": {
+    "title": "Shall we work together?",
+    "subtitle": "Tell me about your project or inquiry",
+    "successTitle": "Message sent!",
+    "successSubtitle": "I will get back to you as soon as possible",
+    "nameLabel": "Full name",
+    "namePlaceholder": "Your name...",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@email.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "How can I help you?",
+    "sending": "Sending...",
+    "submit": "Send message",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "messageRequired": "Message is required",
+    "sendError": "Error sending message. Please try again."
+  },
+  "footer": {
+    "role": "Full-Stack Engineer"
+  },
+  "filters": {
+    "all": "All",
+    "backend": "Backend",
+    "fullstack": "Fullstack",
+    "tools": "Tools",
+    "frontend": "Frontend",
+    "databases": "Databases"
+  }
+}

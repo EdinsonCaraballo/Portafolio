@@ -1,0 +1,904 @@
+<div class="position-relative min-vh-100 pb-5 overflow-x-hidden antialiased selection:bg-[var(--accent-default)] selection:text-white" 
+  [ngClass]="backgroundTheme() === 'dark' ? 'text-light' : 'cv-light-theme'"
+  [style.background]="backgroundTheme() === 'dark' ? 'linear-gradient(to bottom, #030712, #0a0f1a, #030712)' : 'linear-gradient(to bottom, #f8fafc, #cbd5e1, #f8fafc)'">
+  
+  <!-- Dynamic Ambient Blur Orbs Mejorados -->
+  <div class="position-fixed inset-0 pointer-events-none z-0 overflow-hidden w-100 h-100">
+    <div class="position-absolute rounded-circle bg-[var(--accent-glow)] blur-[150px] animate-glow-1 opacity-70" style="top: -20%; left: -10%; width: 60%; height: 60%;"></div>
+    <div class="position-absolute rounded-circle bg-[var(--accent-glow)] blur-[150px] animate-glow-2 opacity-70" style="bottom: -20%; right: -10%; width: 60%; height: 60%;"></div>
+    <div class="position-absolute rounded-circle bg-purple-500/10 blur-[120px] animate-pulse" style="top: 30%; left: 40%; width: 40%; height: 40%;"></div>
+    <div class="position-absolute inset-0 tech-dot-grid opacity-[0.3] w-100 h-100"></div>
+  </div>
+
+  <!-- Loading State Spinner Mejorado -->
+  <div *ngIf="loading()" class="position-fixed inset-0 bg-gradient-to-b from-[#030712] to-[#0a0f1a] z-50 d-flex flex-column align-items-center justify-content-center gap-4 w-100 h-100" style="background: linear-gradient(to bottom, #030712, #0a0f1a);">
+    <div class="position-relative">
+      <div class="w-16 h-16 border-4 border-[var(--accent-default)] border-t-transparent rounded-full animate-spin"></div>
+      <div class="position-absolute inset-0 w-16 h-16 border-4 border-white/10 rounded-full"></div>
+    </div>
+    <div class="text-center space-y-2">
+      <p class="font-mono text-sm text-[var(--accent-default)] animate-pulse mb-1" i18n="@@loading.title">Cargando datos del portafolio...</p>
+      <p class="font-mono text-xs text-gray-500 mb-0" i18n="@@loading.subtitle">Por favor, espere un momento</p>
+    </div>
+  </div>
+
+  <!-- Error State Alert Banner Mejorado -->
+  <div *ngIf="error()" class="position-fixed inset-x-0 top-0 bg-gradient-to-r from-red-600 to-red-700 backdrop-blur-md text-white py-3 px-4 text-center font-mono z-50 d-flex align-items-center justify-content-between shadow-2xl animate-slide-down w-100" style="font-size: 14px;">
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+      <span *ngIf="error() === 'error.backend'" i18n="@@error.backend">No se pudo conectar al servidor Django backend. Asegúrese de que los contenedores estén funcionando.</span>
+      <span *ngIf="error() && error() !== 'error.backend'">{{ error() }}</span>
+    </div>
+    <button (click)="retryLoad()" class="btn btn-sm btn-light bg-white/20 hover:bg-white/30 text-white rounded-3 px-3 py-1 border-0 small fw-semibold" i18n="@@error.retry">
+      Reintentar
+    </button>
+  </div>
+
+  <ng-container *ngIf="portfolio() as data">
+    
+    <!-- HEADER / NAVIGATION Mejorado -->
+    <nav class="position-fixed top-0 start-50 translate-middle-x z-40 w-100 px-3 py-3" style="max-width: 1140px; z-index: 1000;">
+      <div class="backdrop-blur-xl bg-[#030712]/60 border border-white/[0.08] rounded-4 px-4 py-3 shadow-2xl transition-all duration-300 hover:border-[var(--accent-default)]/30">
+        <div class="d-flex align-items-center justify-content-between">
+          
+          <div class="d-flex align-items-center gap-3 group cursor-pointer" (click)="smoothScrollToTop()">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-default)] via-[var(--accent-light)] to-[var(--accent-dark)] d-flex align-items-center justify-content-center font-black text-sm text-white shadow-lg shadow-[var(--accent-default)]/30 transition-all group-hover:scale-105 group-hover:rotate-3">
+              EC
+            </div>
+            <div class="d-flex flex-column">
+              <span class="fw-bold text-sm tracking-tight text-white group-hover:text-[var(--accent-default)] transition-colors leading-none">{{ data.profile.name }}</span>
+              <span class="font-mono text-gray-500 mt-1" style="font-size: 10px;" i18n="@@nav.fullstackDev">Desarrollador Full-Stack</span>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation Mejorado -->
+          <div class="d-none d-md-flex align-items-center gap-4 small font-medium">
+            <a href="#experience" class="text-gray-400 hover:text-white transition-all hover:scale-105 position-relative group text-decoration-none" i18n="@@nav.experience">
+              Experiencia
+              <span class="position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full" style="height: 2px; bottom: -4px;"></span>
+            </a>
+            <a href="#skills" class="text-gray-400 hover:text-white transition-all hover:scale-105 position-relative group text-decoration-none" i18n="@@nav.skills">
+              Habilidades
+              <span class="position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full" style="height: 2px; bottom: -4px;"></span>
+            </a>
+            <a href="#projects" class="text-gray-400 hover:text-white transition-all hover:scale-105 position-relative group text-decoration-none" i18n="@@nav.projects">
+              Proyectos
+              <span class="position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full" style="height: 2px; bottom: -4px;"></span>
+            </a>
+            <a href="#education" class="text-gray-400 hover:text-white transition-all hover:scale-105 position-relative group text-decoration-none" i18n="@@nav.education">
+              Educación
+              <span class="position-absolute bottom-0 start-0 w-0 bg-[var(--accent-default)] transition-all group-hover:w-full" style="height: 2px; bottom: -4px;"></span>
+            </a>
+          </div>
+
+          <div class="d-flex align-items-center gap-2 sm:gap-3">
+            <!-- Language Selector -->
+            <div class="position-relative group">
+              <button class="d-flex align-items-center gap-2 bg-white/[0.05] px-3 py-2 rounded-xl border border-white/[0.08] hover:border-[var(--accent-default)]/40 transition-all btn p-0 border-0">
+                <i class="bi bi-translate text-[var(--accent-default)]"></i>
+                <span class="text-xs d-none d-sm-inline text-white">{{ languageService.currentLang() | uppercase }}</span>
+              </button>
+              <div class="position-absolute end-0 pt-2 hidden group-hover:block z-50">
+                <div class="bg-slate-900/95 backdrop-blur-xl border border-white/[0.08] rounded-xl p-2 shadow-2xl" style="min-width: 120px;">
+                  <button *ngFor="let lang of languageService.languages"
+                    (click)="switchLanguage(lang.code)"
+                    class="w-100 text-left px-3 py-2 rounded-lg text-xs transition-all d-flex align-items-center gap-2 btn btn-link text-decoration-none p-0 border-0"
+                    [ngClass]="languageService.currentLang() === lang.code
+                      ? 'bg-[var(--accent-default)]/20 text-[var(--accent-default)] font-semibold'
+                      : 'text-gray-400 hover:text-white hover:bg-white/[0.05]'">
+                    <span class="font-mono font-bold">{{ lang.flag }}</span>
+                    <span class="text-white">{{ lang.label }}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Theme Picker Mejorado -->
+            <div class="position-relative group">
+              <button class="d-flex align-items-center gap-2 bg-white/[0.05] px-3 py-2 rounded-xl border border-white/[0.08] hover:border-[var(--accent-default)]/40 transition-all btn p-0 border-0">
+                <i class="bi bi-palette-fill text-[var(--accent-default)]"></i>
+                <span class="text-xs d-none d-sm-inline text-white" i18n="@@nav.theme">Tema</span>
+              </button>
+              <div class="position-absolute end-0 pt-2 hidden group-hover:block z-50">
+                <div class="bg-slate-900/95 backdrop-blur-xl border border-white/[0.08] rounded-xl p-2 shadow-2xl">
+                  <div class="d-flex gap-2">
+                    <button *ngFor="let t of themeOptions"
+                      (click)="applyThemeColors(t)"
+                      class="w-8 h-8 rounded-full transition-all hover:scale-110 border-0 btn p-0"
+                      [ngClass]="{
+                        'bg-blue-500 ring-2 ring-white': t === 'blue',
+                        'bg-emerald-500 ring-2 ring-white': t === 'emerald',
+                        'bg-violet-500 ring-2 ring-white': t === 'violet',
+                        'bg-rose-500 ring-2 ring-white': t === 'rose'
+                      }"
+                      [title]="'Tema ' + t">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <button (click)="toggleBackgroundTheme()" 
+              [title]="accessibilityButtonTitle()"
+              class="d-flex align-items-center justify-content-center bg-white/[0.05] px-3 py-2 rounded-xl border border-white/[0.08] hover:border-[var(--accent-default)]/40 transition-all btn border-0"
+              style="height: 38px;">
+              <i class="bi text-[var(--accent-default)] fs-5" 
+                [ngClass]="backgroundTheme() === 'dark' ? 'bi-universal-access' : 'bi-universal-access-circle'"></i>
+              <span class="text-xs text-white ms-2 d-none d-sm-inline">{{ accessibilityButtonText() }}</span>
+            </button>
+            
+            <a href="#contact" 
+              class="px-4 py-2 bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] hover:shadow-lg hover:shadow-[var(--accent-default)]/50 text-white text-xs font-bold rounded-xl transition-all active:scale-95 text-decoration-none" i18n="@@nav.contact">
+              Contacto
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="position-relative z-10 max-w-6xl mx-auto px-3 sm:px-4 space-y-28" style="max-width: 1140px; margin-top: 100px;">
+      
+      <!-- HERO SECTION Mejorado -->
+      <section class="row align-items-center py-4 g-4 g-lg-5">
+        
+        <div class="col-12 col-lg-7 d-flex flex-column gap-4 text-center text-lg-start">
+          
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-white/[0.03] border border-white/[0.08] rounded-pill text-xs text-gray-400 backdrop-blur-sm align-self-center align-self-lg-start animate-fade-in" style="width: fit-content;">
+            <span class="position-relative d-flex h-2 w-2">
+              <span class="animate-ping position-absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="position-relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span i18n="@@hero.available">Disponible para trabajar</span>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="display-4 fw-black tracking-tight text-white leading-tight animate-fade-in-up">
+              <span i18n="@@hero.greeting">Hola, soy</span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-default)] via-[var(--accent-light)] to-[var(--accent-default)] animate-gradient ms-2">
+                {{ data.profile.name }}
+              </span>
+            </h1>
+            <div class="h-10 d-flex justify-content-center justify-content-lg-start align-items-center">
+              <span class="font-mono text-base sm:text-lg text-[var(--accent-default)] font-semibold d-flex align-items-center gap-2">
+                <i class="bi bi-terminal animate-pulse"></i>
+                <span class="typing-text">{{ currentText() }}</span>
+                <span class="w-2 h-5 bg-[var(--accent-default)] animate-blink d-inline-block"></span>
+              </span>
+            </div>
+          </div>
+
+          <p class="text-gray-400 text-base leading-relaxed max-w-2xl mx-auto mx-lg-0">
+            {{ data.profile.bio }}
+          </p>
+
+          <!-- Stats Grid Mejorado -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-100 max-w-4xl mx-auto mx-lg-0 mt-4">
+            <div *ngFor="let stat of data.profile.stats" class="h-100">
+              <div class="group px-3 py-4 rounded-4 bg-gradient-to-br from-white/[0.02] to-white/[0.01] border border-white/[0.06] hover:border-[var(--accent-default)]/30 transition-all hover:scale-105 hover:shadow-xl h-100 d-flex flex-column justify-content-between"
+                style="min-height: 115px;">
+                <div>
+                  <span class="d-block font-black text-[var(--accent-default)] group-hover:scale-105 transition-transform mb-1"
+                    [style.font-size]="stat.value.length > 7 ? '0.95rem' : (stat.value.length > 5 ? '1.25rem' : '1.75rem')">
+                    {{ stat.value }}
+                  </span>
+                  <span class="text-secondary font-mono tracking-wider d-block" style="font-size: 11px; line-height: 1.4; word-break: break-word;">
+                    {{ stat.label }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions Mejoradas -->
+          <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-lg-start gap-3 pt-2">
+            <a href="#contact" 
+              class="w-100 w-sm-auto px-5 py-3 bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] hover:shadow-2xl hover:shadow-[var(--accent-default)]/40 text-white font-bold rounded-xl transition-all d-flex align-items-center justify-content-center gap-2 active:scale-95 group text-decoration-none">
+              <span i18n="@@hero.workTogether">Hablemos</span>
+              <i class="bi bi-arrow-right transition-all group-hover:translate-x-1 group-hover:-translate-y-0.5"></i>
+            </a>
+            
+            <button (click)="exportToPDF()"
+              class="w-100 w-sm-auto px-5 py-3 bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] text-gray-300 hover:text-white font-semibold rounded-xl transition-all d-flex align-items-center justify-content-center gap-2 btn btn-link text-decoration-none">
+              <i class="bi bi-download"></i>
+              <span i18n="@@hero.downloadCv">Descargar CV</span>
+            </button>
+          </div>
+
+          <!-- Contact Info Mejorado -->
+          <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2 pt-2">
+            <button (click)="copyToClipboard(data.profile.email, 'email')"
+              class="px-4 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-[var(--accent-default)]/40 transition-all group btn text-white d-flex align-items-center border-0">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-envelope text-[var(--accent-default)] group-hover:scale-110 transition-transform"></i>
+                <span class="text-sm">
+                  <ng-container *ngIf="copiedField() === 'email'" i18n="@@hero.copied">¡Copiado!</ng-container>
+                  <ng-container *ngIf="copiedField() !== 'email'">{{ data.profile.email }}</ng-container>
+                </span>
+              </div>
+            </button>
+            <button (click)="copyToClipboard(data.profile.phone, 'phone')"
+              class="px-4 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-[var(--accent-default)]/40 transition-all group btn text-white d-flex align-items-center border-0">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-telephone text-[var(--accent-default)] group-hover:scale-110 transition-transform"></i>
+                <span class="text-sm">
+                  <ng-container *ngIf="copiedField() === 'phone'" i18n="@@hero.copied">¡Copiado!</ng-container>
+                  <ng-container *ngIf="copiedField() !== 'phone'">{{ data.profile.phone }}</ng-container>
+                </span>
+              </div>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Hero Avatar Mejorado -->
+        <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-end align-items-center align-items-lg-start pt-3">
+          <div class="position-relative w-72 h-72 group" style="width: 288px; height: 288px;">
+            
+            <div class="position-absolute inset-0 rounded-circle border border-dashed border-[var(--accent-default)]/40 animate-spin-slow w-100 h-100"></div>
+            <div class="position-absolute rounded-circle border border-double border-[var(--accent-default)]/30 animate-spin w-100 h-100" style="inset: 12px; animation-duration: 20s; animation-direction: reverse;"></div>
+            <div class="position-absolute rounded-circle border border-[var(--accent-default)]/20 animate-pulse w-100 h-100" style="inset: 24px;"></div>
+            
+            <div class="position-absolute inset-0 rounded-circle bg-gradient-to-tr from-[var(--accent-default)]/20 via-transparent to-[var(--accent-default)]/20 blur-2xl group-hover:blur-3xl transition-all w-100 h-100"></div>
+            
+            <div class="position-absolute rounded-circle p-[2px] bg-gradient-to-br from-[var(--accent-default)] via-[var(--accent-light)] to-[var(--accent-default)] shadow-2xl w-100 h-100" style="inset: 16px;">
+              <div class="w-100 h-100 rounded-circle overflow-hidden bg-gradient-to-br from-slate-900 to-slate-950">
+                <div class="w-100 h-100 rounded-circle overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 d-flex flex-column align-items-center justify-content-center position-relative">
+                  <div class="position-absolute inset-0 bg-[radial-gradient(circle_at_35%_20%,rgba(255,255,255,0.25),rgba(255,255,255,0.02)_48%,transparent_72%)]"></div>
+                  <div class="position-absolute inset-0 bg-[linear-gradient(160deg,rgba(148,163,184,0.22),rgba(15,23,42,0.9))]"></div>
+                  <ng-container *ngIf="!imageError()">
+                    <img src="assets/profile.png" alt="Edinson Caraballo" 
+                      class="position-relative z-10 w-100 h-100 object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-700" 
+                      (error)="imageError.set(true)">
+                  </ng-container>
+                  <ng-container *ngIf="imageError()">
+                    <div class="position-relative z-10 text-center space-y-2">
+                      <i class="bi bi-laptop display-6 text-[var(--accent-default)]/70"></i>
+                      <span class="font-mono display-6 font-black text-white d-block">EC</span>
+                      <span class="font-mono text-[10px] text-gray-500 uppercase tracking-widest d-block" i18n="@@hero.fullstackEngineer">Ingeniero Full-Stack</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+
+            <div class="position-absolute d-flex align-items-center gap-2 px-3 py-2 bg-slate-900/90 backdrop-blur-md border border-white/[0.1] rounded-pill shadow-2xl z-30" style="bottom: -8px; right: -8px; z-index: 30;">
+              <span class="position-relative d-flex h-2.5 w-2.5">
+                <span class="animate-ping position-absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="position-relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </span>
+              <span class="text-xs font-mono font-semibold text-gray-300">{{ data.profile.location }}</span>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- STATS DASHBOARD MEJORADO -->
+      <section class="row g-3">
+        <div *ngFor="let metric of dashboardMetrics()" class="col-6 col-md-3">
+          <div class="bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/[0.06] rounded-4 p-4 text-center hover:scale-105 transition-all cursor-pointer group h-100"
+            (click)="scrollToSection(metric.section)">
+            <div class="fs-2 mb-2 d-inline-block group-hover:scale-110 transition-transform">
+              <i [class]="metric.icon" class="text-[var(--accent-default)]"></i>
+            </div>
+            <div class="fs-3 font-black text-white">{{ metric.value }}</div>
+            <div class="text-secondary font-mono mt-1" style="font-size: 11px;">{{ metric.label }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TERMINAL MEJORADO -->
+      <section class="d-flex flex-column gap-3">
+        <div class="d-flex align-items-center gap-3 border-bottom border-white/[0.06] pb-3">
+          <div class="p-2.5 bg-gradient-to-br from-[var(--accent-default)]/20 to-transparent border border-[var(--accent-default)]/30 rounded-xl">
+            <i class="bi bi-terminal-fill fs-4 text-[var(--accent-default)]"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-mono uppercase tracking-wider text-[var(--accent-default)] font-semibold d-block" i18n="@@terminal.badge">Consola Interactiva</span>
+            <h2 class="fs-3 font-black text-white tracking-tight mb-0" i18n="@@terminal.title">Estación de Trabajo Linux</h2>
+          </div>
+        </div>
+
+        <div class="rounded-4 border border-white/[0.08] overflow-hidden shadow-2xl hover:shadow-[var(--accent-default)]/10 transition-all">
+          <div class="bg-gradient-to-r from-slate-950 to-slate-900 border-bottom border-white/[0.08] px-4 py-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <div class="rounded-circle bg-danger" style="width: 12px; height: 12px;"></div>
+              <div class="rounded-circle bg-warning" style="width: 12px; height: 12px;"></div>
+              <div class="rounded-circle bg-success" style="width: 12px; height: 12px;"></div>
+            </div>
+            <div class="d-flex align-items-center gap-2 small font-mono text-secondary">
+              <i class="bi bi-terminal"></i>
+              <span>developer&#64;portfolio:~</span>
+            </div>
+            <div class="text-[10px] font-mono text-[var(--accent-default)] bg-[var(--accent-default)]/10 px-2 py-1 rounded border border-[var(--accent-default)]/20">
+              interactive
+            </div>
+          </div>
+
+          <div class="p-4 bg-gradient-to-b from-slate-950/95 to-slate-950 font-mono text-sm text-gray-300 min-h-[300px] max-h-[400px] overflow-y-auto space-y-2">
+            <div *ngFor="let line of terminalHistory()" class="leading-relaxed animate-fade-in">
+              <div *ngIf="line.type === 'input'" class="d-flex align-items-start gap-2">
+                <span class="text-[var(--accent-default)] shrink-0">$></span>
+                <span class="text-white font-semibold">{{ line.text }}</span>
+              </div>
+              <div *ngIf="line.type === 'error'" class="text-red-400 ps-3 border-start border-2 border-danger">
+                <i class="bi bi-x-circle-fill text-xs mr-2"></i>
+                {{ line.text }}
+              </div>
+              <div *ngIf="line.type === 'success'" class="text-green-400 ps-3 border-start border-2 border-success">
+                <i class="bi bi-check-circle-fill text-xs mr-2"></i>
+                {{ line.text }}
+              </div>
+              <div *ngIf="line.type === 'output'" class="text-gray-400 ps-3">
+                {{ line.text }}
+              </div>
+            </div>
+            <div #terminalEnd></div>
+
+            <form (submit)="handleTerminalSubmit($event)" class="d-flex align-items-center gap-2 pt-3 border-top border-white/[0.06] mt-3">
+              <span class="text-[var(--accent-default)] shrink-0 font-bold">$></span>
+              <input type="text" name="terminalInput" [(ngModel)]="terminalInput"
+                placeholder="Escribe 'help' para comenzar..." i18n-placeholder="@@terminal.placeholder"
+                class="flex-grow-1 bg-transparent text-white font-mono text-sm border-0 focus-none"
+                style="outline: none;"
+                autocomplete="off">
+            </form>
+          </div>
+        </div>
+
+        <!-- Quick Commands -->
+        <div class="d-flex flex-wrap gap-2 justify-content-center pt-2">
+          <button *ngFor="let cmd of quickCommands" (click)="executeQuickCommand(cmd)"
+            class="px-3 py-1.5 text-xs bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] rounded-xl transition-all font-mono btn text-white border-0">
+            {{ cmd }}
+          </button>
+        </div>
+      </section>
+
+      <!-- EXPERIENCIA MEJORADA -->
+      <section id="experience" class="d-flex flex-column gap-4 scroll-mt-28">
+        <div class="d-flex align-items-center gap-3 border-bottom border-white/[0.06] pb-3">
+          <div class="p-2.5 bg-gradient-to-br from-[var(--accent-default)]/20 to-transparent border border-[var(--accent-default)]/30 rounded-xl">
+            <i class="bi bi-briefcase-fill fs-4 text-[var(--accent-default)]"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-mono uppercase tracking-wider text-[var(--accent-default)] font-semibold d-block" i18n="@@experience.badge">Trayectoria</span>
+            <h2 class="fs-3 font-black text-white tracking-tight mb-0" i18n="@@experience.title">Experiencia Profesional</h2>
+          </div>
+        </div>
+
+        <div class="position-relative ps-4 ps-sm-5 d-flex flex-column gap-4">
+          <div class="position-absolute start-0 top-0 bottom-0" style="width: 2px; left: 12px; background: linear-gradient(to bottom, var(--accent-default), rgba(255,255,255,0.05) 80%, transparent);"></div>
+
+          <div *ngFor="let exp of data.experiences; let idx = index" class="position-relative group">
+            <div class="position-absolute rounded-circle border-2 border-slate-950 z-10 transition-all"
+               style="left: -27px; top: 8px; width: 16px; height: 16px;"
+               [ngClass]="{
+                 'bg-[var(--accent-default)] scale-125 ring-4 ring-[var(--accent-default)]/30 shadow-lg': expandedExps()[idx],
+                 'bg-gray-700 group-hover:bg-[var(--accent-default)]/70': !expandedExps()[idx]
+               }">
+            </div>
+
+            <div (click)="toggleExp(idx)"
+               class="group cursor-pointer rounded-4 border transition-all duration-300 overflow-hidden"
+               [ngClass]="{
+                 'border-[var(--accent-default)]/40 bg-gradient-to-br from-slate-900/90 to-slate-900 shadow-2xl': expandedExps()[idx],
+                 'border-white/[0.06] hover:border-white/[0.15] bg-white/[0.02] hover:bg-white/[0.04]': !expandedExps()[idx]
+               }">
+              
+              <div class="p-4 p-sm-5">
+                <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
+                  <div class="space-y-1">
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                      <h3 class="fs-5 fw-bold text-white group-hover:text-[var(--accent-default)] transition-colors mb-0">{{ exp.role }}</h3>
+                      <span class="px-2 py-0.5 bg-white/[0.06] border border-white/[0.08] rounded-lg text-[11px] text-gray-400 font-mono">
+                        {{ exp.company }}
+                      </span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-xs text-[var(--accent-default)]/80 font-semibold font-mono">
+                      <i class="bi bi-calendar"></i>
+                      <span>{{ exp.period }}</span>
+                    </div>
+                  </div>
+                  <span class="text-[11px] text-gray-500 font-mono d-flex align-items-center gap-1">
+                    <ng-container *ngIf="expandedExps()[idx]" i18n="@@experience.hideDetails">Ocultar detalles</ng-container>
+                    <ng-container *ngIf="!expandedExps()[idx]" i18n="@@experience.showDetails">Ver detalles</ng-container>
+                    <i class="bi" [ngClass]="expandedExps()[idx] ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                  </span>
+                </div>
+
+                <p class="text-sm text-gray-400 mt-3 leading-relaxed mb-0">{{ exp.description }}</p>
+
+                <div *ngIf="expandedExps()[idx]" @expandCollapse>
+                  <div class="mt-4 pt-4 border-top border-white/[0.06] space-y-3">
+                    <h4 class="text-[11px] uppercase font-bold text-gray-500 tracking-wider d-flex align-items-center gap-2">
+                      <i class="bi bi-trophy"></i>
+                      <span i18n="@@experience.achievements">Logros Clave</span>
+                    </h4>
+                    <ul class="list-unstyled space-y-2 mb-0">
+                      <li *ngFor="let ach of exp.achievements" class="d-flex gap-2.5 align-items-start text-sm text-gray-300">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-default)] mt-2 shrink-0 d-inline-block"></span>
+                        <span>{{ ach }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <span *ngFor="let s of exp.stack" class="px-2.5 py-1 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] text-gray-400 font-mono">
+                    {{ s }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS MEJORADO -->
+      <section id="skills" class="d-flex flex-column gap-4 scroll-mt-28">
+        <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 border-bottom border-white/[0.06] pb-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="p-2.5 bg-gradient-to-br from-[var(--accent-default)]/20 to-transparent border border-[var(--accent-default)]/30 rounded-xl">
+              <i class="bi bi-code-square fs-4 text-[var(--accent-default)]"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-[var(--accent-default)] font-semibold d-block" i18n="@@skills.badge">Conocimientos</span>
+              <h2 class="fs-3 font-black text-white tracking-tight mb-0" i18n="@@skills.title">Habilidades Técnicas</h2>
+            </div>
+          </div>
+          <div class="position-relative w-100 w-sm-72" style="max-width: 288px;">
+            <i class="bi bi-search position-absolute start-3 top-50 translate-middle-y text-secondary small"></i>
+            <input type="text" [(ngModel)]="skillSearch" (ngModelChange)="skillSearch.set($event)"
+              placeholder="Buscar tecnología..." i18n-placeholder="@@skills.searchPlaceholder"
+              class="w-100 ps-5 pe-3 py-2 bg-white/[0.03] border border-white/[0.08] rounded-xl text-sm text-white placeholder-gray-600 focus-none transition-all"
+              style="outline: none;">
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <button *ngFor="let cat of skillCategoryFilters()"
+            (click)="activeSkillCat.set(cat.key)"
+            class="px-4 py-2 rounded-xl text-sm font-semibold transition-all btn text-white border-0"
+            [ngClass]="{
+              'bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] text-white shadow-lg shadow-[var(--accent-default)]/30': activeSkillCat() === cat.key,
+              'bg-white/[0.03] text-gray-400 hover:text-white hover:bg-white/[0.08]': activeSkillCat() !== cat.key
+            }">
+            {{ cat.label }}
+          </button>
+        </div>
+
+        <div class="row g-4">
+          <ng-container *ngIf="filteredSkills().length > 0; else noSkills">
+            <div *ngFor="let skill of filteredSkills()" class="col-12 col-md-6">
+              <div class="group p-4 rounded-4 border bg-gradient-to-br from-white/[0.02] to-white/[0.01] hover:border-[var(--accent-default)]/30 transition-all hover:scale-[1.02] h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <span class="fw-bold text-white group-hover:text-[var(--accent-default)] transition-colors">{{ skill.name }}</span>
+                  <span class="px-2 py-1 rounded-lg text-[10px] font-mono font-bold"
+                    [ngClass]="{
+                      'bg-blue-500/10 text-blue-400 border border-blue-500/20': skill.category === 'Backend',
+                      'bg-purple-500/10 text-purple-400 border border-purple-500/20': skill.category === 'Frontend',
+                      'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20': skill.category === 'Bases de Datos' || skill.category === 'Databases',
+                      'bg-amber-500/10 text-amber-400 border border-amber-500/20': skill.category === 'Herramientas' || skill.category === 'Tools'
+                    }">
+                    {{ skill.category }}
+                  </span>
+                </div>
+                <div class="space-y-2">
+                  <div class="d-flex justify-content-between text-xs text-gray-500">
+                    <span><span i18n="@@skills.level">Nivel</span>: {{ skill.level }}</span>
+                    <span>{{ getLevelPercentage(skill.level) }}%</span>
+                  </div>
+                  <div class="w-100 h-2 bg-slate-800 rounded-pill overflow-hidden" style="height: 8px;">
+                    <div class="h-100 bg-gradient-to-r from-[var(--accent-dark)] to-[var(--accent-default)] rounded-pill transition-all duration-1000"
+                      [style.width.%]="getLevelPercentage(skill.level)"></div>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-top border-white/[0.04] text-xs text-gray-400 d-flex align-items-start gap-2">
+                  <i class="bi bi-info-circle text-[var(--accent-default)] mt-0.5 flex-shrink-0"></i>
+                  <span class="flex-grow-1" style="min-width: 0; word-break: break-word;">{{ skill.usage }}</span>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noSkills>
+            <div class="col-12 p-5 text-center rounded-4 border border-white/[0.06] text-gray-500" i18n="@@skills.empty">
+              No se encontraron habilidades que coincidan con la búsqueda.
+            </div>
+          </ng-template>
+        </div>
+      </section>
+
+      <!-- PROJECTS MEJORADO -->
+      <section id="projects" class="d-flex flex-column gap-4 scroll-mt-28">
+        <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 border-bottom border-white/[0.06] pb-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="p-2.5 bg-gradient-to-br from-[var(--accent-default)]/20 to-transparent border border-[var(--accent-default)]/30 rounded-xl">
+              <i class="bi bi-grid-3x3-gap-fill fs-4 text-[var(--accent-default)]"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-[var(--accent-default)] font-semibold d-block" i18n="@@projects.badge">Portafolio</span>
+              <h2 class="fs-3 font-black text-white tracking-tight mb-0" i18n="@@projects.title">Proyectos Destacados</h2>
+            </div>
+          </div>
+          <div class="position-relative w-100 w-sm-72" style="max-width: 288px;">
+            <i class="bi bi-search position-absolute start-3 top-50 translate-middle-y text-secondary small"></i>
+            <input type="text" [(ngModel)]="projectSearch" (ngModelChange)="projectSearch.set($event)"
+              placeholder="Buscar proyecto..." i18n-placeholder="@@projects.searchPlaceholder"
+              class="w-100 ps-5 pe-3 py-2 bg-white/[0.03] border border-white/[0.08] rounded-xl text-sm text-white placeholder-gray-600 focus-none transition-all"
+              style="outline: none;">
+          </div>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <!-- Categorías -->
+          <div class="d-flex flex-wrap gap-2">
+            <button *ngFor="let cat of projectCategoryFilters()"
+              (click)="activeProjCat.set(cat.key)"
+              class="px-4 py-2 rounded-xl text-sm font-semibold transition-all btn text-white border-0"
+              [ngClass]="{
+                'bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] text-white shadow-lg shadow-[var(--accent-default)]/30': activeProjCat() === cat.key,
+                'bg-white/[0.03] text-gray-400 hover:text-white': activeProjCat() !== cat.key
+              }">
+              {{ cat.label }}
+            </button>
+          </div>
+
+          <!-- Filtro de Tecnologías -->
+          <div class="position-relative dropdown-tech">
+            <button (click)="toggleTechDropdown()" class="d-flex align-items-center justify-content-between gap-3 bg-white/[0.05] px-3 py-2 rounded-xl border border-white/[0.08] hover:border-[var(--accent-default)]/40 transition-all btn p-0 border-0" style="min-width: 220px; height: 38px;">
+              <div class="d-flex align-items-center gap-2 px-3">
+                <i class="bi bi-cpu text-[var(--accent-default)]"></i>
+                <span class="text-xs text-white">
+                  {{ getSelectedTechsLabel() }}
+                </span>
+              </div>
+              <i class="bi bi-chevron-down text-gray-500 pe-3 small"></i>
+            </button>
+            
+            <div class="position-absolute end-0 pt-2 z-40" [ngClass]="techDropdownOpen() ? 'd-block' : 'd-none'" style="min-width: 240px; right: 0;">
+              <div class="bg-slate-900/95 backdrop-blur-xl border border-white/[0.08] rounded-xl p-3 shadow-2xl space-y-2" style="max-height: 280px;">
+                <div class="d-flex align-items-center justify-content-between border-bottom border-white/[0.06] pb-2 mb-2">
+                  <span class="text-[10px] font-mono text-gray-500 uppercase tracking-wider" i18n="@@projects.techFilterTitle">TECNOLOGÍAS</span>
+                  <button *ngIf="selectedTechs().length > 0" (click)="clearTechFilters()" class="btn p-0 border-0 text-[10px] text-red-400 hover:text-red-300 font-mono bg-transparent" i18n="@@projects.clearFilters">
+                    Limpiar
+                  </button>
+                </div>
+                
+                <!-- Buscador dentro del desplegable -->
+                <div class="position-relative mb-2">
+                  <i class="bi bi-search position-absolute start-2 top-50 translate-middle-y text-gray-500" style="font-size: 10px;"></i>
+                  <input type="text" 
+                    [ngModel]="techSearchQuery()" 
+                    (ngModelChange)="techSearchQuery.set($event)"
+                    (click)="$event.stopPropagation()"
+                    placeholder="Buscar tecnología..."
+                    class="w-100 ps-4 pe-2 py-1 bg-white/[0.03] border border-white/[0.08] rounded-lg text-[11px] text-white placeholder-gray-600 focus-none"
+                    style="outline: none; height: 26px;">
+                </div>
+
+                <div class="space-y-1" style="max-height: 160px; overflow-y: auto;">
+                  <div *ngFor="let tech of filteredAvailableTechnologies()" class="form-check d-flex align-items-center gap-2 py-1 px-1 rounded hover:bg-white/[0.03]">
+                    <input class="form-check-input bg-transparent border-white/[0.15] text-[var(--accent-default)] cursor-pointer" 
+                      type="checkbox" 
+                      [id]="'tech-' + tech"
+                      [checked]="selectedTechs().includes(tech)"
+                      (change)="toggleTechFilter(tech)">
+                    <label class="form-check-label text-xs text-gray-300 cursor-pointer w-100 text-start" [for]="'tech-' + tech">
+                      {{ tech }}
+                    </label>
+                  </div>
+                  <div *ngIf="filteredAvailableTechnologies().length === 0" class="text-center text-xs text-gray-500 py-2" i18n="@@projects.noTechFound">
+                    Sin resultados
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chips de tecnologías activas para remover fácil -->
+        <div *ngIf="selectedTechs().length > 0" class="d-flex flex-wrap align-items-center gap-2 animate-fade-in" style="margin-top: -12px;">
+          <span class="text-[10px] font-mono text-gray-500 uppercase tracking-wider" i18n="@@projects.activeFilters">Activos:</span>
+          <div class="d-flex flex-wrap gap-1.5">
+            <span *ngFor="let tech of selectedTechs()" 
+              class="d-inline-flex align-items-center gap-1.5 px-2.5 py-0.5 rounded-pill bg-[var(--accent-default)]/10 border border-[var(--accent-default)]/20 text-[11px] text-white">
+              {{ tech }}
+              <button (click)="toggleTechFilter(tech)" class="btn p-0 border-0 text-gray-500 hover:text-red-400 font-bold" style="line-height: 1; font-size: 9px; margin-left: 2px;">
+                ✕
+              </button>
+            </span>
+            <button (click)="clearTechFilters()" class="btn p-0 border-0 text-[10px] text-red-400 hover:text-red-300 font-mono ms-2 bg-transparent" i18n="@@projects.clearAllFilters">
+              [Limpiar todo]
+            </button>
+          </div>
+        </div>
+
+        <!-- Barra de Pestañas (Tabs) de Origen de Proyectos -->
+        <div class="d-flex justify-content-center border-bottom border-white/[0.06] pb-1 mb-4 mt-2">
+          <div class="d-flex gap-2 p-1.5 bg-white/[0.02] border border-white/[0.08] rounded-2xl backdrop-blur-md">
+            <button (click)="activeTab.set('todos')"
+              class="px-4 px-sm-5 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all duration-300 btn text-white border-0"
+              [ngClass]="activeTab() === 'todos' 
+                ? 'bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] shadow-lg shadow-[var(--accent-default)]/20 scale-105 font-black' 
+                : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'">
+              <i class="bi bi-grid-fill text-[var(--accent-default)] me-1.5" [ngClass]="{'text-white': activeTab() === 'todos'}"></i>
+              <span i18n="@@projects.tabAll">Todos</span>
+            </button>
+            <button (click)="activeTab.set('destacados')"
+              class="px-4 px-sm-5 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all duration-300 btn text-white border-0"
+              [ngClass]="activeTab() === 'destacados' 
+                ? 'bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] shadow-lg shadow-[var(--accent-default)]/20 scale-105 font-black' 
+                : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'">
+              <i class="bi bi-star-fill text-[var(--accent-default)] me-1.5" [ngClass]="{'text-white': activeTab() === 'destacados'}"></i>
+              <span i18n="@@projects.tabFeatured">Destacados</span>
+            </button>
+            <button (click)="activeTab.set('laborales')"
+              class="px-4 px-sm-5 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all duration-300 btn text-white border-0"
+              [ngClass]="activeTab() === 'laborales' 
+                ? 'bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] shadow-lg shadow-[var(--accent-default)]/20 scale-105 font-black' 
+                : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'">
+              <i class="bi bi-briefcase-fill text-[var(--accent-default)] me-1.5" [ngClass]="{'text-white': activeTab() === 'laborales'}"></i>
+              <span i18n="@@projects.tabLaboral">Laborales</span>
+            </button>
+            <button (click)="activeTab.set('universitarios')"
+              class="px-4 px-sm-5 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all duration-300 btn text-white border-0"
+              [ngClass]="activeTab() === 'universitarios' 
+                ? 'bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] shadow-lg shadow-[var(--accent-default)]/20 scale-105 font-black' 
+                : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'">
+              <i class="bi bi-mortarboard-fill text-[var(--accent-default)] me-1.5" [ngClass]="{'text-white': activeTab() === 'universitarios'}"></i>
+              <span i18n="@@projects.tabUniversitario">Universitarios</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <ng-container *ngIf="filteredProjects().length > 0; else noProjects">
+            <div *ngFor="let project of filteredProjects()" class="col-12 col-md-6">
+              <div class="group rounded-4 border overflow-hidden bg-gradient-to-br from-white/[0.02] to-white/[0.01] hover:border-[var(--accent-default)]/30 transition-all h-100 d-flex flex-column justify-content-between">
+                <div class="bg-gradient-to-r from-slate-950 to-slate-900 border-bottom border-white/[0.06] px-4 py-2.5 d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold uppercase tracking-wider animate-fade-in"
+                      [ngClass]="project.type === 'laboral' 
+                        ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' 
+                        : 'bg-purple-500/10 text-purple-400 border border-purple-500/20'">
+                      <ng-container *ngIf="project.type === 'laboral'" i18n="@@projects.tabLaboral">Laborales</ng-container>
+                      <ng-container *ngIf="project.type !== 'laboral'" i18n="@@projects.tabUniversitario">Universitarios</ng-container>
+                    </span>
+                    <span *ngIf="project.featured" class="d-inline-flex align-items-center justify-content-center text-yellow-400" title="Proyecto Destacado">
+                      <i class="bi bi-star-fill text-[10px] text-yellow-500"></i>
+                    </span>
+                  </div>
+                  <span class="text-[10px] font-mono text-gray-500">{{ project.category }}</span>
+                </div>
+                <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+                  <div class="mb-4">
+                    <h3 class="fs-5 fw-bold text-white group-hover:text-[var(--accent-default)] transition-colors">{{ project.title }}</h3>
+                    <span class="d-inline-block mt-2 text-[11px] font-semibold text-emerald-400 font-mono px-2 py-1 bg-emerald-500/10 rounded-lg">
+                      {{ project.metrics }}
+                    </span>
+                    <p class="text-sm text-gray-400 leading-relaxed mt-3 mb-0">{{ project.description }}</p>
+                  </div>
+                  <div>
+                    <div class="d-flex flex-wrap gap-1.5 mb-3">
+                      <span *ngFor="let t of project.tech" 
+                        (click)="toggleTechFilter(t)"
+                        class="px-2 py-1 rounded-lg text-[10px] font-mono cursor-pointer transition-all border"
+                        [ngClass]="selectedTechs().includes(t)
+                          ? 'bg-[var(--accent-default)]/10 border-[var(--accent-default)]/30 text-[var(--accent-default)] font-bold'
+                          : 'bg-white/[0.03] border-white/[0.06] text-gray-400 hover:bg-[var(--accent-default)]/20 hover:border-[var(--accent-default)]/30 hover:text-[var(--accent-default)]'">
+                        {{ t }}
+                      </span>
+                    </div>
+                    <button (click)="selectedProject.set(project)"
+                      class="w-100 py-2 bg-white/[0.03] hover:bg-[var(--accent-default)]/10 border border-white/[0.06] hover:border-[var(--accent-default)]/30 text-sm text-gray-300 hover:text-[var(--accent-default)] font-semibold rounded-xl transition-all btn text-white border-0">
+                      <span i18n="@@projects.viewDetails">Ver detalles del proyecto</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noProjects>
+            <div class="col-12 p-5 text-center rounded-4 border border-white/[0.06] text-gray-500" i18n="@@projects.empty">
+              No se encontraron proyectos con los criterios de búsqueda seleccionados.
+            </div>
+          </ng-template>
+        </div>
+      </section>
+
+      <!-- EDUCACIÓN MEJORADA -->
+      <section id="education" class="d-flex flex-column gap-4 scroll-mt-28">
+        <div class="d-flex align-items-center gap-3 border-bottom border-white/[0.06] pb-3">
+          <div class="p-2.5 bg-gradient-to-br from-[var(--accent-default)]/20 to-transparent border border-[var(--accent-default)]/30 rounded-xl">
+            <i class="bi bi-mortarboard-fill fs-4 text-[var(--accent-default)]"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-mono uppercase tracking-wider text-[var(--accent-default)] font-semibold d-block" i18n="@@education.badge">Estudios</span>
+            <h2 class="fs-3 font-black text-white tracking-tight mb-0" i18n="@@education.title">Educación & Certificaciones</h2>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div *ngFor="let edu of data.education" class="col-12 col-md-6">
+            <div class="group p-4 rounded-4 border bg-gradient-to-br from-white/[0.02] to-white/[0.01] hover:border-[var(--accent-default)]/30 transition-all position-relative overflow-hidden h-100">
+              <div class="position-absolute start-0 top-0 bottom-0" style="width: 4px; background: linear-gradient(to bottom, var(--accent-default), var(--accent-dark));"></div>
+              <div class="space-y-3 ps-3 d-flex flex-column gap-2">
+                <div class="d-flex justify-content-between align-items-start gap-2">
+                  <div>
+                    <h3 class="fs-5 fw-bold text-white group-hover:text-[var(--accent-default)] transition-colors mb-0">{{ edu.degree }}</h3>
+                    <p class="text-[11px] text-gray-500 font-mono mt-1 mb-0">{{ edu.institution }}</p>
+                  </div>
+                  <span class="px-2 py-1 bg-[var(--accent-default)]/10 border border-[var(--accent-default)]/20 rounded-lg text-[10px] text-[var(--accent-default)] font-bold font-mono text-nowrap">
+                    {{ edu.period }}
+                  </span>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-0">{{ edu.detail }}</p>
+                <div class="pt-2 border-top border-white/[0.04] text-xs text-gray-400 d-flex align-items-center gap-2">
+                  <i class="bi bi-bookmark text-[var(--accent-default)]"></i>
+                  <span><span i18n="@@education.projectsLabel">Proyectos Destacados</span>: {{ edu.projects }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO MEJORADO -->
+      <section id="contact" class="d-flex flex-column gap-4 scroll-mt-28 max-w-2xl mx-auto w-100">
+        <div class="text-center space-y-3">
+          <div class="d-inline-flex p-3 bg-gradient-to-br from-[var(--accent-default)]/20 to-transparent border border-[var(--accent-default)]/30 rounded-4" style="width: fit-content;">
+            <i class="bi bi-send-fill fs-4 text-[var(--accent-default)] animate-bounce"></i>
+          </div>
+          <h2 class="fs-3 font-black text-white tracking-tight mb-0" i18n="@@contact.title">Ponte en contacto</h2>
+          <p class="text-sm text-gray-500 font-mono mb-0" i18n="@@contact.subtitle">Envíame un mensaje directo o contáctame por redes sociales</p>
+        </div>
+
+        <div class="rounded-4 border border-white/[0.08] overflow-hidden shadow-2xl">
+          <div class="bg-gradient-to-r from-slate-950 to-slate-900 border-bottom border-white/[0.08] px-4 py-2 d-flex align-items-center gap-2">
+            <div class="w-2.5 h-2.5 rounded-full bg-red-500/70" style="width: 10px; height: 10px;"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/70" style="width: 10px; height: 10px;"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-green-500/70" style="width: 10px; height: 10px;"></div>
+            <span class="text-[11px] font-mono text-[var(--accent-default)] ml-2">contact_form.sh</span>
+          </div>
+
+          <div class="p-4 p-sm-5">
+            <div *ngIf="formSubmitted()" class="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-4 text-center space-y-4 animate-fade-in">
+              <div class="mx-auto w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px;">
+                <i class="bi bi-check-lg display-6"></i>
+              </div>
+              <div>
+                <h3 class="fw-bold text-white fs-5 mb-1" i18n="@@contact.successTitle">¡Mensaje Enviado con Éxito!</h3>
+                <p class="text-sm text-gray-400 mb-0" i18n="@@contact.successSubtitle">Gracias por escribirme. Responderé a tu correo tan pronto como sea posible.</p>
+              </div>
+            </div>
+
+            <form *ngIf="!formSubmitted()" (submit)="handleFormSubmit($event)" class="d-flex flex-column gap-4">
+              <div>
+                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider font-mono d-block mb-2">
+                  <i class="bi bi-person me-1"></i> <span i18n="@@contact.nameLabel">Nombre Completo</span>
+                </label>
+                <input type="text" name="name" [(ngModel)]="formData.name"
+                  placeholder="Tu nombre..." i18n-placeholder="@@contact.namePlaceholder"
+                  class="w-100 px-4 py-3 rounded-xl bg-white/[0.03] border text-white placeholder-gray-600 focus-none transition-all"
+                  style="outline: none;"
+                  [ngClass]="formErrors.name ? 'border-red-500/60' : 'border-white/[0.08]'">
+                <p *ngIf="formErrors.name" class="text-xs text-red-500 mt-1 mb-0">{{ formErrors.name }}</p>
+              </div>
+
+              <div>
+                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider font-mono d-block mb-2">
+                  <i class="bi bi-envelope me-1"></i> <span i18n="@@contact.emailLabel">Correo Electrónico</span>
+                </label>
+                <input type="email" name="email" [(ngModel)]="formData.email"
+                  placeholder="tu@correo.com" i18n-placeholder="@@contact.emailPlaceholder"
+                  class="w-100 px-4 py-3 rounded-xl bg-white/[0.03] border text-white placeholder-gray-600 focus-none transition-all"
+                  style="outline: none;"
+                  [ngClass]="formErrors.email ? 'border-red-500/60' : 'border-white/[0.08]'">
+                <p *ngIf="formErrors.email" class="text-xs text-red-500 mt-1 mb-0">{{ formErrors.email }}</p>
+              </div>
+
+              <div>
+                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider font-mono d-block mb-2">
+                  <i class="bi bi-chat-dots me-1"></i> <span i18n="@@contact.messageLabel">Mensaje</span>
+                </label>
+                <textarea rows="4" name="message" [(ngModel)]="formData.message"
+                  placeholder="¿Cómo te puedo ayudar?" i18n-placeholder="@@contact.messagePlaceholder"
+                  class="w-100 px-4 py-3 rounded-xl bg-white/[0.03] border text-white placeholder-gray-600 resize-none focus-none transition-all"
+                  style="outline: none;"
+                  [ngClass]="formErrors.message ? 'border-red-500/60' : 'border-white/[0.08]'"></textarea>
+                <p *ngIf="formErrors.message" class="text-xs text-red-500 mt-1 mb-0">{{ formErrors.message }}</p>
+              </div>
+
+              <button type="submit" [disabled]="isSubmitting()"
+                class="w-100 py-3 bg-gradient-to-r from-[var(--accent-default)] to-[var(--accent-dark)] hover:shadow-2xl hover:shadow-[var(--accent-default)]/40 text-white font-bold rounded-xl transition-all d-flex align-items-center justify-content-center gap-2 disabled:opacity-50 btn border-0">
+                <ng-container *ngIf="isSubmitting(); else notSubmitting">
+                  <div class="spinner-border spinner-border-sm text-white" role="status"></div>
+                  <span i18n="@@contact.sending">Enviando...</span>
+                </ng-container>
+                <ng-template #notSubmitting>
+                  <span i18n="@@contact.submit">Enviar Mensaje</span>
+                  <i class="bi bi-send"></i>
+                </ng-template>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- FOOTER MEJORADO -->
+    <footer class="position-relative z-10 border-top border-white/[0.04] bg-gradient-to-b from-transparent to-[#030712] py-5 text-center text-sm text-gray-600 mt-5" style="background: linear-gradient(to bottom, transparent, #030712);">
+      <div class="max-w-6xl mx-auto px-4 space-y-3" style="max-width: 1140px;">
+        <div class="d-flex justify-content-center gap-4 mb-4">
+          <a href="#" (click)="smoothScrollToTop($event)" class="text-gray-500 hover:text-[var(--accent-default)] transition-colors">
+            <i class="bi bi-arrow-up-circle fs-5"></i>
+          </a>
+          <a href="#experience" class="text-gray-500 hover:text-[var(--accent-default)] transition-colors text-[12px] text-decoration-none" i18n="@@footer.nav.experience">Experiencia</a>
+          <a href="#skills" class="text-gray-500 hover:text-[var(--accent-default)] transition-colors text-[12px] text-decoration-none" i18n="@@footer.nav.skills">Habilidades</a>
+          <a href="#projects" class="text-gray-500 hover:text-[var(--accent-default)] transition-colors text-[12px] text-decoration-none" i18n="@@footer.nav.projects">Proyectos</a>
+          <a href="#education" class="text-gray-500 hover:text-[var(--accent-default)] transition-colors text-[12px] text-decoration-none" i18n="@@footer.nav.education">Educación</a>
+        </div>
+        <p class="mb-1">© {{ currentYear }} {{ data.profile.name }} • <span i18n="@@footer.role">Desarrollador Full-Stack</span></p>
+        <p class="text-xs text-gray-700 font-mono mb-0">{{ data.profile.location }}</p>
+      </div>
+    </footer>
+
+    <!-- MODAL PROYECTO MEJORADO -->
+    <div *ngIf="selectedProject() as project" class="position-fixed inset-0 z-50 d-flex align-items-center justify-content-center p-3 sm:p-4 animate-fade-in" style="inset: 0;" (click)="selectedProject.set(null)">
+      <div class="position-absolute inset-0 bg-black/90 backdrop-blur-md w-100 h-100"></div>
+      <div class="position-relative w-100 rounded-4 bg-gradient-to-br from-slate-900 to-slate-950 border border-white/[0.1] shadow-2xl z-10 overflow-y-auto" style="max-width: 650px; max-height: 90vh;" (click)="$event.stopPropagation()">
+        <div class="position-sticky top-0 bg-gradient-to-r from-slate-950 to-slate-900 border-bottom border-white/[0.08] p-4 d-flex justify-content-between align-items-center" style="z-index: 20;">
+          <span class="text-[11px] font-mono text-[var(--accent-default)] bg-[var(--accent-default)]/10 px-3 py-1 rounded-lg">
+            {{ project.category }}
+          </span>
+          <button (click)="selectedProject.set(null)" class="text-gray-500 hover:text-white transition-all fs-4 btn p-0 border-0 bg-transparent" style="line-height: 1;">
+            ✕
+          </button>
+        </div>
+        <div class="p-4 p-sm-5 space-y-4">
+          <h3 class="fs-4 fw-black text-white mb-3">{{ project.title }}</h3>
+          
+          <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl d-flex align-items-center gap-2">
+            <i class="bi bi-graph-up text-emerald-400"></i>
+            <span class="text-emerald-400 fw-semibold">{{ project.metrics }}</span>
+          </div>
+
+          <div>
+            <h4 class="text-sm fw-bold text-gray-400 mb-2" i18n="@@projects.fullDescription">Descripción Detallada</h4>
+            <p class="text-gray-300 leading-relaxed mb-0">{{ project.fullDesc }}</p>
+          </div>
+
+          <div>
+            <h4 class="text-sm fw-bold text-gray-400 mb-2" i18n="@@projects.techStack">Tecnologías Utilizadas</h4>
+            <div class="d-flex flex-wrap gap-2">
+              <span *ngFor="let t of project.tech" class="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/[0.08] text-sm text-gray-300 font-mono">
+                {{ t }}
+              </span>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 pt-4">
+            <button (click)="copyToClipboard('Proyecto: ' + project.title + '\nImpacto: ' + project.metrics, 'modal')"
+              class="flex-grow-1 py-3 bg-[var(--accent-default)] hover:bg-[var(--accent-dark)] rounded-xl transition-all d-flex align-items-center justify-content-center gap-2 btn text-white border-0">
+              <i class="bi bi-clipboard"></i>
+              <span i18n="@@projects.copyCard">Copiar Información</span>
+            </button>
+            <button (click)="selectedProject.set(null)" class="flex-grow-1 py-3 bg-white/[0.05] hover:bg-white/[0.1] rounded-xl transition-all btn text-white border-0" i18n="@@projects.close">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <!-- CANVAS EFFECTS -->
+  <canvas *ngIf="matrixActive()" #matrixCanvas class="position-fixed inset-0 z-50 cursor-pointer w-100 h-100" style="inset: 0;" (click)="stopMatrixRain()"></canvas>
+  <canvas #confettiCanvas class="position-fixed inset-0 pointer-events-none z-50 w-100 h-100" style="inset: 0;"></canvas>
+
+</div>
