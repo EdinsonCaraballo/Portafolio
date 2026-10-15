@@ -13,9 +13,10 @@ frontend/bazel-out/
 .eslintcache
 
 # --- Python / Django / Backend ---
-backend/__pycache__/
-backend/*.py[cod]
-backend/*$py.class
+**/__pycache__/
+__pycache__/
+*.py[cod]
+*$py.class
 backend/.Python
 backend/build/
 backend/develop-eggs/
